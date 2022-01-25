@@ -21,12 +21,28 @@ public class Player : MonoBehaviour
     {
         if(view.IsMine)
         {
-            Movement();
+            if(Input.touchCount > 0)
+            {
+                TouchMovement();
+            }
+            else
+            {
+                KeyboardMovement();
+            }
+
         }
 
     }
 
-    void Movement()
+    void TouchMovement()
+    {
+        Touch touch = Input.GetTouch(0);
+        Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+        touchPos = touchPos * speed * Time.deltaTime;
+        rb.MovePosition(rb.transform.position + touchPos);
+
+    }
+    void KeyboardMovement()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
