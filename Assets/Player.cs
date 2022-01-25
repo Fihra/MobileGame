@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector3 tempVect = new Vector3(horizontal, vertical, 0);
-        tempVect = tempVect.normalized * speed * Time.deltaTime;
+        tempVect = tempVect * speed * Time.deltaTime;
         rb.MovePosition(rb.transform.position + tempVect);
 
     }
