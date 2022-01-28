@@ -54,8 +54,14 @@ public class DrawLine : MonoBehaviour
     {
         Debug.Log(newFingerPos);
         fingerPositions.Add(newFingerPos);
-        lineRenderer.positionCount++;
-        lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
-        edgeCollider.points = fingerPositions.ToArray();
+        
+        if(lineRenderer.positionCount <= 15)
+        {
+            lineRenderer.positionCount++;
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
+            //lineRenderer.SetPosition(5, newFingerPos);
+            edgeCollider.points = fingerPositions.ToArray();
+        }
+        
     }
 }
