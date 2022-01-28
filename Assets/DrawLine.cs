@@ -23,11 +23,13 @@ public class DrawLine : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
+            Destroy(currentLine);
             CreateLine();
         }
         if(Input.GetMouseButton(0))
         {
             Vector2 tempFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            
             if(Vector2.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
             {
                 UpdateLine(tempFingerPos);
@@ -50,6 +52,7 @@ public class DrawLine : MonoBehaviour
 
     void UpdateLine(Vector2 newFingerPos)
     {
+        Debug.Log(newFingerPos);
         fingerPositions.Add(newFingerPos);
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
